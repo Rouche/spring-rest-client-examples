@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/springframeworkguru/spring-rest-client-examples.svg?style=svg)](https://circleci.com/gh/springframeworkguru/spring-rest-client-examples)
+[![CircleCI](https://circleci.com/gh/Rouche/spring5-recipe.svg?style=svg)](https://circleci.com/gh/Rouche/spring5-recipe)
 # Spring Rest Client Examples
 
 This repository is for an example application built in my Spring Framework 5 - Beginner to Guru
