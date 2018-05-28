@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('List of users')}"></head>
+
+<body>
+    <!--/*@thymesVar id="users" type="java.util.List"*/-->
+    <!--/*@thymesVar id="user" type="com.resolutech.springrestclient.api.domain.User"*/-->
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-lg-9 mx-auto">
+                <div class="card border-primary">
+
+                    <div class="card-header bg-primary text-white">
+                        <h1 class="card-title">Users from API</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" th:if="${not #lists.isEmpty(users)}">
+                            <table class="table table-responsive table-hover w-100 d-block d-md-table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+                                    <th>Language</th>
+                                    <th>Phone</th>
+                                </tr>
+                                </thead>
+                                <tr th:remove="all">
+                                    <td>Joe</td>
+                                    <td>Buck</td>
+                                    <td>Male</td>
+                                    <td>foo@example.com</td>
+                                    <td>English</td>
+                                    <td>132-123-1234</td>
+                                </tr>
+                                <tr th:remove="all">
+                                    <td>Joe</td>
+                                    <td>Buck</td>
+                                    <td>Male</td>
+                                    <td>foo@example.com</td>
+                                    <td>English</td>
+                                    <td>132-123-1234</td>
+                                </tr>
+                                <tr th:each="user : ${users}">
+                                    <td th:text="${user.name.first}">Joe</td>
+                                    <td th:text="${user.name.last}">Buck</td>
+                                    <td th:text="${user.gender}">Male</td>
+                                    <td th:text="${user.email}">foo@example.com</td>
+                                    <td th:text="${user.language}">English</td>
+                                    <td th:text="${user.phone}">132-123-1234</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
