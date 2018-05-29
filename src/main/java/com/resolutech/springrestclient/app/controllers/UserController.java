@@ -31,16 +31,31 @@ public class UserController {
     @PostMapping("/users")
     public String formPost(ServerWebExchange exchange, Model model) {
 
-        exchange.getFormData().subscribe(map -> {
-            String limit = map.getFirst("limit");
+//        exchange.getFormData().subscribe(map -> {
+//            String limit = map.getFirst("limit");
+//
+//            log.debug("Received limit: [" + limit + "]");
+//            if(StringUtils.isBlank(limit)) {
+//                limit = "10";
+//            }
+//
+//            model.addAttribute("users", apiService.getUsers(Integer.valueOf(limit)));
+//        });
 
-            log.debug("Received limit: [" + limit + "]");
-            if(StringUtils.isBlank(limit)) {
-                limit = "10";
-            }
+        model.addAttribute("users",
+            apiService.getUsersReactive(exchange.getFormData()
+                .map(multimap -> {
+                    String limit = multimap.getFirst("limit");
 
-            model.addAttribute("users", apiService.getUsers(Integer.valueOf(limit)));
-        });
+                    log.debug("Received limit: [" + limit + "]");
+                    if (StringUtils.isBlank(limit)) {
+                        limit = "10";
+                    }
+
+                    return Integer.valueOf(limit);
+                })
+            )
+        );
 
         return "userlist";
     }
